@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 // Creates model for Route
 const SuitSchema = new mongoose.Schema({
 	bearer: {
-		type: Schema.ObjectId,
-		ref: 'Superhero'
+		type: mongoose.Schema.ObjectId,
+		ref: 'superheroes'
 	},
 	fabric: {
 		type: Number,
@@ -97,4 +97,4 @@ const SuitSchema = new mongoose.Schema({
 	}
 })
 
-module.exports = mongoose.model('superheroes', SuitSchema);
+module.exports = mongoose.model('suits', SuitSchema);

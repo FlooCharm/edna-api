@@ -17,8 +17,8 @@ const SuperheroSchema = new mongoose.Schema({
 	},
 	superpowers: [String],
 	suits: [{
-		type: Schema.ObjectId,
-		ref: 'Suit'
+		type: mongoose.Schema.ObjectId,
+		ref: 'suits'
 	}]
 })
 
