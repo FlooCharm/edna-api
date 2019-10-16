@@ -97,7 +97,7 @@ router.post('/', verifyToken, function(req, res, next) {
 })
 
 // PUT superhero
-router.put('/:id', function(req, res, next) {
+router.put('/:id', verifyToken, function(req, res, next) {
 	jwt.verify(
 		req.token,
 		'secretKey',
@@ -120,7 +120,7 @@ router.put('/:id', function(req, res, next) {
 })
 
 // DELETE superhero
-router.delete('/:id', function(req, res, next) {
+router.delete('/:id', verifyToken, function(req, res, next) {
 	jwt.verify(
 		req.token,
 		'secretKey',

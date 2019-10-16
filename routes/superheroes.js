@@ -57,7 +57,6 @@ router.post('/', verifyToken, function(req, res, next) {
 		'secretKey',
 		(err, authData) => {
 			if(err) next(err);
-
 			const body = req.body;
 			Superhero.create(body)
 				.then(result => {
@@ -74,13 +73,12 @@ router.post('/', verifyToken, function(req, res, next) {
 })
 
 // PUT superhero
-router.put('/:id', function(req, res, next) {
+router.put('/:id', verifyToken, function(req, res, next) {
 	jwt.verify(
 		req.token,
 		'secretKey',
 		(err, authData) => {
 			if(err) next(err);
-
 			let body = req.body;
 			Superhero.findByIdAndUpdate(req.params.id, req.body, { new: true })
 				.then(result => {
@@ -97,7 +95,7 @@ router.put('/:id', function(req, res, next) {
 })
 
 // DELETE superhero
-router.delete('/:id', function(req, res, next) {
+router.delete('/:id', verifyToken, function(req, res, next) {
 	jwt.verify(
 		req.token,
 		'secretKey',
