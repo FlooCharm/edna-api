@@ -13,7 +13,7 @@ router.get('/', verifyToken, function(req, res, next) {
 		(err, authData) => {
 			if(err) next(err);
 
-			Suit.find({}).populate('bearer')
+			Suit.find({}).populate('bearer', '_id super_name')
 				.then(result => {
 					if(result.length)
 						res.status(200).json({ 
@@ -59,7 +59,7 @@ router.get('/:id', verifyToken, function(req, res, next) {
 		(err, authData) => {
 			if(err) next(err);
 
-			Suit.findById(req.params.id).populate('bearer')
+			Suit.findById(req.params.id).populate('bearer', '_id super_name')
 				.then(result => {
 					if(result)
 						res.status(200).json({
@@ -73,7 +73,7 @@ router.get('/:id', verifyToken, function(req, res, next) {
 	)
 })
 
-// POST superhero
+// POST suit
 router.post('/', verifyToken, function(req, res, next) {
 	jwt.verify(
 		req.token,
@@ -84,10 +84,15 @@ router.post('/', verifyToken, function(req, res, next) {
 			const body = req.body;
 			Suit.create(body)
 				.then(result => {
-					if(result)
-						res.status(201).json({
-							suit: result
-						});
+					if(result){
+						Superhero.findByIdAndUpdate(result.bearer, {$push: {suits: result._id}}, { new: true })
+							.then(() => {
+								res.status(201).json({
+									suit: result
+								});
+							})
+							.catch(next)
+					}
 					else
 						res.status(404).send('Cant create suit');
 				})
@@ -96,7 +101,7 @@ router.post('/', verifyToken, function(req, res, next) {
 	)
 })
 
-// PUT superhero
+// PUT suit
 router.put('/:id', verifyToken, function(req, res, next) {
 	jwt.verify(
 		req.token,
@@ -119,7 +124,7 @@ router.put('/:id', verifyToken, function(req, res, next) {
 	)
 })
 
-// DELETE superhero
+// DELETE suit
 router.delete('/:id', verifyToken, function(req, res, next) {
 	jwt.verify(
 		req.token,
@@ -127,8 +132,18 @@ router.delete('/:id', verifyToken, function(req, res, next) {
 		(err, authData) => {
 			if(err) next(err);
 
-			Suit.findByIdAndRemove(req.params.id)
-				.then(() => res.status(204).send() )
+			Suit.findById(req.params.id)
+				.then(suit => {
+					Superhero.findByIdAndUpdate(suit.bearer, {$pullAll: {suits: [suit._id]}}, { new: true })
+						.then(() => {
+							suit.remove({ _id: req.params.id})
+								.then(() => {
+									res.status(204).send()
+								})
+						})
+						.catch(next)
+
+				})
 				.catch(next)
 		}
 	)
