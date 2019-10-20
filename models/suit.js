@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const SuitSchema = new mongoose.Schema({
 	bearer: {
 		type: mongoose.Schema.ObjectId,
+		required: [true, 'is required'],
 		ref: 'superheroes'
 	},
 	fabric: {
