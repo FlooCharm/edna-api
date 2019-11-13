@@ -34,6 +34,9 @@ app.use((error, req, res, next) => {
 			type: error.name
 		})
 	}
+	else {
+		res.send(500)
+	}
 })
 
 module.exports = app;
