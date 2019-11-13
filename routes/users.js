@@ -30,32 +30,23 @@ router.get('/', verifyToken, function(req, res, next) {
 })
 
 // Sign up
-// router.post('/', (req, res, next) => {
-// 	const body = req.body;
-// 	User.create(body)
-// 		.then(result => {
-// 			if(result)
-// 				res.status(201).json({
-// 					message: 'sign up completed',
-// 					user: result
-// 				})
-// 			else
-// 				next({
-// 					message: "Can't create user",
-// 					name: 'Invalid'
-// 				})
-// 		})
-// 		.catch(next);
-// })
-
 router.post('/', (req, res, next) => {
 	const body = req.body;
-	res.status(201).json({
-		message: 'sign up completed',
-		user: body
-	})
+	User.create(body)
+		.then(result => {
+			if(result)
+				res.status(201).json({
+					message: 'sign up completed',
+					user: result
+				})
+			else
+				next({
+					message: "Can't create user",
+					name: 'Invalid'
+				})
+		})
+		.catch(next);
 })
-
 
 // Login
 router.post('/login', (req, res, next) => {

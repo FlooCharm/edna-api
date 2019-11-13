@@ -5,12 +5,14 @@ const logger = require('morgan');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+require('dotenv').config({ path: '.env' });
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const superheroesRouter = require('./routes/superheroes');
 const suitsRouter = require('./routes/suits');
 
-mongoose.connect('mongodb://127.0.0.1:27017/ednaDB');
+mongoose.connect(process.env.DB_URL);
 const app = express();
 
 app.use(cors());
