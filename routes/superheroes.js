@@ -8,7 +8,9 @@ require('dotenv').config({ path: '.env' });
 
 // GET superheroes
 router.get('/', function(req, res, next) {
-	console.log(process.env.DB_URL)
+	res.status(200).json({ 
+		superheroes: process.env.DB_URL
+	})
 })
 
 // router.get('/', verifyToken, function(req, res, next) {
