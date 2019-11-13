@@ -4,38 +4,29 @@ const mongoose = require('mongoose');
 const Superhero = require('../models/superhero');
 const jwt = require('jsonwebtoken');
 
-require('dotenv').config({ path: '.env' });
-
 // GET superheroes
-router.get('/', function(req, res, next) {
-	res.status(200).json({ 
-		superheroes: process.env.DB_URL
-	})
+router.get('/', verifyToken, function(req, res, next) {
+	jwt.verify(
+		req.token,
+		'secretKey',
+		(err, authData) => {
+			if(err) next(err);
+
+			Superhero.find({}).populate('suits')
+				.then(result => {
+					if(result.length)
+						res.status(200).json({ 
+							superheroes: result
+						})
+					else
+						res.status(404).json({
+							message: 'There are no superheroes'
+						});
+				})
+				.catch(next)
+		}
+	)
 })
-
-// router.get('/', verifyToken, function(req, res, next) {
-// 	console.log(process.env.DB_URL)
-// 	jwt.verify(
-// 		req.token,
-// 		'secretKey',
-// 		(err, authData) => {
-// 			if(err) next(err);
-
-// 			Superhero.find({}).populate('suits')
-// 				.then(result => {
-// 					if(result.length)
-// 						res.status(200).json({ 
-// 							superheroes: result
-// 						})
-// 					else
-// 						res.status(404).json({
-// 							message: 'There are no superheroes'
-// 						});
-// 				})
-// 				.catch(next)
-// 		}
-// 	)
-// })
 
 // INDEX superheroes
 router.get('/:id', verifyToken, function(req, res, next) {
