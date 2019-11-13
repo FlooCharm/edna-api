@@ -4,8 +4,11 @@ const mongoose = require('mongoose');
 const Superhero = require('../models/superhero');
 const jwt = require('jsonwebtoken');
 
+require('dotenv').config({ path: '.env' });
+
 // GET superheroes
 router.get('/', verifyToken, function(req, res, next) {
+	console.log(process.env.DB_URL)
 	jwt.verify(
 		req.token,
 		'secretKey',

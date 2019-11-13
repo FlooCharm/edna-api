@@ -13,7 +13,6 @@ const superheroesRouter = require('./routes/superheroes');
 const suitsRouter = require('./routes/suits');
 
 mongoose.connect(process.env.DB_URL);
-console.log(process.env.DB_URL)
 const app = express();
 
 app.use(cors());
