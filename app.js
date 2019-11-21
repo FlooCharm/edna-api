@@ -29,7 +29,7 @@ app.use('/suits', suitsRouter);
 
 app.use((error, req, res, next) => {
 	if(error) {
-		res.status(500).json({
+		res.status(error.status).json({
 			message: error.message,
 			type: error.name
 		})

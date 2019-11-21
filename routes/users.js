@@ -102,6 +102,7 @@ function verifyToken(req, res, next) {
 		next();
 	} else {
 		next({
+			status: 401,
 			message: 'Invalid token',
 			name: 'Forbidden'
 		})
