@@ -152,6 +152,7 @@ router.delete('/:id', verifyToken, function(req, res, next) {
 // Authorization
 function verifyToken(req, res, next) {
 	const bearerHeader = req.headers['authorization']
+	if (!bearerHeader) return next({})
 	let token = bearerHeader.split(' ');
 
 	if(token && token[1]) {
