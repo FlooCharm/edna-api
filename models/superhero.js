@@ -8,7 +8,7 @@ const SuperheroSchema = new mongoose.Schema({
 		index: { unique: true }
 	},
 	weather: {
-		type: String,
+		type: [String],
 		required: [true, 'is required']
 	},
 	element: {
