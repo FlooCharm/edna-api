@@ -84,6 +84,7 @@ router.post('/login', (req, res, next) => {
 			}
 			else
 				next({
+					status: 401,
 					message: 'Username or password are incorrect',
 					name: 'Forbidden'
 				})
