@@ -12,8 +12,9 @@ const SuperheroSchema = new mongoose.Schema({
 		required: [true, 'is required']
 	},
 	element: {
-		type: Number,
-		required: [true, 'is required']
+		type: String,
+		required: [true, 'is required'],
+		enum: ['fuego', 'agua', 'tierra', 'aire']
 	},
 	superpowers: [String],
 	suits: [{
