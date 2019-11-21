@@ -14,14 +14,14 @@ router.get('/', verifyToken, function(req, res, next) {
 
 			Superhero.find({}).populate('suits')
 				.then(result => {
-					if(result.length)
+					if(result.length >= 0)
 						res.status(200).json({ 
 							superheroes: result
 						})
-					else
-						res.status(404).json({
-							message: 'There are no superheroes'
-						});
+					// else
+					// 	res.status(404).json({
+					// 		message: 'There are no superheroes'
+					// 	});
 				})
 				.catch(next)
 		}
