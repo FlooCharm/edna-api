@@ -18,10 +18,10 @@ router.get('/', verifyToken, function(req, res, next) {
 						res.status(200).json({ 
 							superheroes: result
 						})
-					// else
-					// 	res.status(404).json({
-					// 		message: 'There are no superheroes'
-					// 	});
+					else
+						res.status(404).json({
+							message: 'There are no superheroes'
+						});
 				})
 				.catch(next)
 		}
