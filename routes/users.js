@@ -9,7 +9,7 @@ router.get('/', verifyToken, function(req, res, next) {
 		req.token,
 		'secretKey',
 		(err, authData) => {
-			if(err) next(err);
+			if(err) res.status(401).send({ error: err });
 
 			User.find({})
 				.then(result => {

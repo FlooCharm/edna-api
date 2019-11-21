@@ -10,7 +10,7 @@ router.get('/', verifyToken, function(req, res, next) {
 		req.token,
 		'secretKey',
 		(err, authData) => {
-			if(err) next(err);
+			if(err) res.status(401).send({ error: err });
 
 			Superhero.find({}).populate('suits')
 				.then(result => {
@@ -34,7 +34,7 @@ router.get('/:id', verifyToken, function(req, res, next) {
 		req.token,
 		'secretKey',
 		(err, authData) => {
-			if(err) next(err);
+			if(err) res.status(401).send({ error: err });
 
 			Superhero.findById(req.params.id).populate('suits')
 				.then(result => {
@@ -56,7 +56,8 @@ router.post('/', verifyToken, function(req, res, next) {
 		req.token,
 		'secretKey',
 		(err, authData) => {
-			if(err) next(err);
+			if(err) res.status(401).send({ error: err });
+
 			const body = req.body;
 			Superhero.create(body)
 				.then(result => {
@@ -78,7 +79,8 @@ router.put('/:id', verifyToken, function(req, res, next) {
 		req.token,
 		'secretKey',
 		(err, authData) => {
-			if(err) next(err);
+			if(err) res.status(401).send({ error: err });
+			
 			let body = req.body;
 			Superhero.findByIdAndUpdate(req.params.id, req.body, { new: true })
 				.then(result => {
@@ -100,7 +102,7 @@ router.delete('/:id', verifyToken, function(req, res, next) {
 		req.token,
 		'secretKey',
 		(err, authData) => {
-			if(err) next(err);
+			if(err) res.status(401).send({ error: err });
 
 			Superhero.findByIdAndRemove(req.params.id)
 				.then(() => res.status(204).send() )

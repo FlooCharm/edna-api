@@ -11,7 +11,7 @@ router.get('/', verifyToken, function(req, res, next) {
 		req.token,
 		'secretKey',
 		(err, authData) => {
-			if(err) next(err);
+			if(err) res.status(401).send({ error: err });
 
 			Suit.find({}).populate('bearer', '_id super_name')
 				.then(result => {
@@ -35,7 +35,7 @@ router.get('/superhero/:id', verifyToken, function(req, res, next) {
 		req.token,
 		'secretKey',
 		(err, authData) => {
-			if(err) next(err);
+			if(err) res.status(401).send({ error: err });
 
 			Superhero.findById(req.params.id).populate('suits')
 				.then(result => {
@@ -57,7 +57,7 @@ router.get('/:id', verifyToken, function(req, res, next) {
 		req.token,
 		'secretKey',
 		(err, authData) => {
-			if(err) next(err);
+			if(err) res.status(401).send({ error: err });
 
 			Suit.findById(req.params.id).populate('bearer', '_id super_name')
 				.then(result => {
@@ -79,7 +79,7 @@ router.post('/', verifyToken, function(req, res, next) {
 		req.token,
 		'secretKey',
 		(err, authData) => {
-			if(err) next(err);
+			if(err) res.status(401).send({ error: err });
 
 			const body = req.body;
 			Suit.create(body)
@@ -107,7 +107,7 @@ router.put('/:id', verifyToken, function(req, res, next) {
 		req.token,
 		'secretKey',
 		(err, authData) => {
-			if(err) next(err);
+			if(err) res.status(401).send({ error: err });
 
 			let body = req.body;
 			Suit.findByIdAndUpdate(req.params.id, req.body, { new: true })
@@ -130,7 +130,7 @@ router.delete('/:id', verifyToken, function(req, res, next) {
 		req.token,
 		'secretKey',
 		(err, authData) => {
-			if(err) next(err);
+			if(err) res.status(401).send({ error: err });
 
 			Suit.findById(req.params.id)
 				.then(suit => {
