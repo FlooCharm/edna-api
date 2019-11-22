@@ -9,10 +9,14 @@ const SuitSchema = new mongoose.Schema({
 	},
 	bearer_type: {
 		type: Number,
+		min: 0,
+		max: 4,
 		required: [true, 'is required']
 	},
 	fabric: {
 		type: Number,
+		min: 0,
+		max: 2,
 		required: [true, 'is required']
 	},
 	main_colors: {
@@ -23,81 +27,81 @@ const SuitSchema = new mongoose.Schema({
 		}
 	},
 	measures: {
-		length_left_arm: Number,
-		length_right_arm: Number,
-		width_left_arm: Number,
-		width_right_arm: Number,
-		length_left_leg: Number,
-		length_right_leg: Number,
-		width_left_leg: Number,
-		width_right_leg: Number,
-		neck: Number,
-		chest: Number,
-		waist: Number,
-		hips: Number,
-		torso: Number,
-		head: Number
+		length_left_arm: { type: Number, min: 0 },
+		length_right_arm: { type: Number, min: 0 },
+		width_left_arm: { type: Number, min: 0 },
+		width_right_arm: { type: Number, min: 0 },
+		length_left_leg: { type: Number, min: 0 },
+		length_right_leg: { type: Number, min: 0 },
+		width_left_leg: { type: Number, min: 0 },
+		width_right_leg: { type: Number, min: 0 },
+		neck: { type: Number, min: 0 },
+		chest: { type: Number, min: 0 },
+		waist: { type: Number, min: 0 },
+		hips: { type: Number, min: 0 },
+		torso: { type: Number, min: 0 },
+		head: { type: Number, min: 0 }
 	},
 	pieces: {
 		left_arm: {
 			color: String,
-			isActive: Boolean,
-			isAvailable: Boolean
+			is_active: Boolean,
+			is_available: Boolean
 		},
 		right_arm: {
 			color: String,
-			isActive: Boolean,
-			isAvailable: Boolean
+			is_active: Boolean,
+			is_available: Boolean
 		},
 		left_leg: {
 			color: String,
-			isActive: Boolean,
-			isAvailable: Boolean
+			is_active: Boolean,
+			is_available: Boolean
 		},
 		right_leg: {
 			color: String,
-			isActive: Boolean,
-			isAvailable: Boolean
+			is_active: Boolean,
+			is_available: Boolean
 		},
 		torso: {
 			color: String,
-			isActive: Boolean,
-			isAvailable: Boolean
+			is_active: Boolean,
+			is_available: Boolean
 		},
 		neck: {
 			color: String,
-			isActive: Boolean,
-			isAvailable: Boolean
+			is_active: Boolean,
+			is_available: Boolean
 		},
 		belt: {
 			color: String,
-			isActive: Boolean,
-			isAvailable: Boolean
+			is_active: Boolean,
+			is_available: Boolean
 		},
 		left_foot: {
 			color: String,
-			isActive: Boolean,
-			isAvailable: Boolean
+			is_active: Boolean,
+			is_available: Boolean
 		},
 		right_foot: {
 			color: String,
-			isActive: Boolean,
-			isAvailable: Boolean
+			is_active: Boolean,
+			is_available: Boolean
 		},
 		mask: {
 			color: String,
-			isActive: Boolean,
-			isAvailable: Boolean
+			is_active: Boolean,
+			is_available: Boolean
 		},
 		hat: {
 			color: String,
-			isActive: Boolean,
-			isAvailable: Boolean
+			is_active: Boolean,
+			is_available: Boolean
 		},
 		accesories: {
 			color: String,
-			isActive: Boolean,
-			isAvailable: Boolean
+			is_active: Boolean,
+			is_available: Boolean
 		}
 	}
 })
