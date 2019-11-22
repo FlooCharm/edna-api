@@ -26,6 +26,7 @@ const SuitSchema = new mongoose.Schema({
 			message: "You can't have more than four colors"
 		}
 	},
+	thumbnail: String,
 	measures: {
 		length_left_arm: { type: Number, min: 0 },
 		length_right_arm: { type: Number, min: 0 },
