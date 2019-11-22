@@ -7,6 +7,10 @@ const SuitSchema = new mongoose.Schema({
 		required: [true, 'is required'],
 		ref: 'superheroes'
 	},
+	bearer_type: {
+		type: Number,
+		required: [true, 'is required']
+	},
 	fabric: {
 		type: Number,
 		required: [true, 'is required']
