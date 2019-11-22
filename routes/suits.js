@@ -15,7 +15,7 @@ router.get('/', verifyToken, function(req, res, next) {
 
 			Suit.find({}).populate('bearer', '_id super_name')
 				.then(result => {
-					if(result.length)
+					if(result.length >= 0)
 						res.status(200).json({ 
 							suits: result
 						})
