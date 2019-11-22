@@ -93,16 +93,6 @@ const SuitSchema = new mongoose.Schema({
 			color: String,
 			is_active: Boolean,
 			is_available: Boolean
-		},
-		hat: {
-			color: String,
-			is_active: Boolean,
-			is_available: Boolean
-		},
-		accesories: {
-			color: String,
-			is_active: Boolean,
-			is_available: Boolean
 		}
 	}
 })
