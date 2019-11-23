@@ -82,7 +82,7 @@ router.put('/:id', verifyToken, function(req, res, next) {
 			if(err) res.status(401).send({ error: err });
 			
 			let body = req.body;
-			Superhero.findByIdAndUpdate(req.params.id, req.body, { new: true })
+			Superhero.findByIdAndUpdate(req.params.id, req.body, { new: true }).populate('suits')
 				.then(result => {
 					if(result)
 						res.status(201).json({
