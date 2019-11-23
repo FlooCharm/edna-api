@@ -46,53 +46,47 @@ const SuitSchema = new mongoose.Schema({
 	pieces: {
 		left_arm: {
 			color: String,
-			is_active: Boolean,
-			is_available: Boolean
+			is_active: Boolean
 		},
 		right_arm: {
 			color: String,
-			is_active: Boolean,
-			is_available: Boolean
+			is_active: Boolean
 		},
 		left_leg: {
 			color: String,
-			is_active: Boolean,
-			is_available: Boolean
+			is_active: Boolean
 		},
 		right_leg: {
 			color: String,
-			is_active: Boolean,
-			is_available: Boolean
+			is_active: Boolean
 		},
 		torso: {
 			color: String,
-			is_active: Boolean,
-			is_available: Boolean
+			is_active: Boolean
 		},
 		neck: {
 			color: String,
-			is_active: Boolean,
-			is_available: Boolean
+			is_active: Boolean
 		},
 		belt: {
 			color: String,
-			is_active: Boolean,
-			is_available: Boolean
+			is_active: Boolean
 		},
 		left_foot: {
 			color: String,
-			is_active: Boolean,
-			is_available: Boolean
+			is_active: Boolean
 		},
 		right_foot: {
 			color: String,
-			is_active: Boolean,
-			is_available: Boolean
+			is_active: Boolean
 		},
 		mask: {
 			color: String,
-			is_active: Boolean,
-			is_available: Boolean
+			is_active: Boolean
+		},
+		underwear: {
+			color: String,
+			is_active: Boolean
 		}
 	}
 })
